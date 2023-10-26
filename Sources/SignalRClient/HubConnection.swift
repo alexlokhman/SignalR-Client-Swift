@@ -154,11 +154,11 @@ public class HubConnection {
         do {
             let invocationMessage = ServerInvocationMessage(target: method, arguments: arguments, streamIds: [])
             let invocationData = try hubProtocol.writeMessage(message: invocationMessage)
-            resetKeepAlive()
+//            resetKeepAlive()
 
             connection.send(data: invocationData, sendDidComplete: { error in
                 if error == nil {
-                    self.resetKeepAlive()
+//                    self.resetKeepAlive()
                 }
                 self.callbackQueue.async {
                     sendDidComplete(error)
@@ -317,7 +317,7 @@ public class HubConnection {
                     self.logger.log(logLevel: .error, message: "Invoking server hub method \(method) returned error: \(e)")
                     self.failInvocationWithError(invocationHandler: invocationHandler, invocationId: id, error: e)
                 } else {
-                    self.resetKeepAlive()
+//                    self.resetKeepAlive()
                 }
             }
         } catch {
